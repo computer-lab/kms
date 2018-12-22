@@ -1,7 +1,7 @@
 // KMS (Kill My Slack)
 // This function had the intended effect when pasted into the browser console on a "Manage members" page (`https://your-workspace.slack.com/admin'`) and executed on xx/xx/xxxx.
 
-async deactivateAllMembersButAdmins = (dryRun = true) => {
+deactivateAllMembersButAdmins = async (dryRun = true) => {
   const { bootData: { api_token }, adminMembers: { members }} = TS.redux.getState()
   const shouldDeactivate = m => !m.is_admin && !m.is_bot && !m.is_primary_owner && !m.is_owner
   const membersToDeactivate = members.filter(shouldDeactivate)
@@ -21,8 +21,8 @@ async deactivateAllMembersButAdmins = (dryRun = true) => {
   }
   const pretendToSetMemberInactive = m => console.log(`Pretending to deactivate ${m.id}`)
   const thingToDo = dryRun ? pretendToSetMemberInactive : setMemberInactive
-  const timer = new Promise(res => setTimeout(res, 1000))
-  membersToDeactivate.ForEach(m => await timer(thingToDo))
+  const timer = async () => new Promise(res => setTimeout(res, 1000))
+  membersToDeactivate.forEach(m => await timer(thingToDo))
 }
 
 await deactivateAllMembersButAdmins()
