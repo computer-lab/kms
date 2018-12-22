@@ -11,20 +11,14 @@ deactivateAllMembersButAdmins = (dryRun = true) => {
 
   const TEST_UID = 'U0J6BDWMQ'
 
+  const formData = new FormData()
+  formData.append('user', TEST_UID)
+  formData.append('token', api_token)
+  formData.append('_x_mode', 'online')
+
   const setMemberInactive = uid => fetch('/api/users.admin.setInactive', {
-    "credentials":"include",
-    headers:{
-      'accept': '*/*',
-      'accept-language':'en-US,en;q=0.9',
-      'cache-control':'no-cache',
-      "content-type":"multipart/form-data; boundary=----WebKitFormBoundaryNoTSkCwjrBCHDjr9",
-      "pragma":"no-cache",
-      "x-slack-version-ts":"1545436898"
-    },
-    "referrerPolicy":"no-referrer",
-    "body":`------WebKitFormBoundaryNoTSkCwjrBCHDjr9\r\nContent-Disposition: form-data; name=\"user\"\r\n\r\n${uid}\r\n------WebKitFormBoundaryNoTSkCwjrBCHDjr9\r\nContent-Disposition: form-data; name=\"token\"\r\n\r\n${api_token}\r\n------WebKitFormBoundaryNoTSkCwjrBCHDjr9\r\nContent-Disposition: form-data; name=\"_x_mode\"\r\n\r\nonline\r\n------WebKitFormBoundaryNoTSkCwjrBCHDjr9--\r\n`,
-    "method":"POST",
-    "mode":"cors"
+    body: formData,
+    method: 'POST',
   });
 
   setMemberInactive(TEST_UID)
