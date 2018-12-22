@@ -1,4 +1,4 @@
-# KMS (Kill My Slack) 
+# kms (kill my slack) 
 
 The JavaScript source in this repo contains a function: `deactivateAllUsersButAdmins`.
 
