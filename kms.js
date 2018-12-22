@@ -21,7 +21,7 @@ deactivateAllMembersButAdmins = async (dryRun = true) => {
   }
   const pretendToSetMemberInactive = m => console.log(`Pretending to deactivate ${m.id}`)
   const thingToDo = dryRun ? pretendToSetMemberInactive : setMemberInactive
-  const timer = async () => new Promise(res => setTimeout(res, 1000))
+  const timer = async () => new Promise(res => setTimeout(thingToDo, 1000))
   membersToDeactivate.forEach(m => await timer(thingToDo))
 }
 
