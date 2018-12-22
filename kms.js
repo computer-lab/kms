@@ -1,5 +1,5 @@
 // KMS (Kill My Slack)
-// This function had the intended effect when pasted into the browser console on a "Manage members" page (`https://your-workspace.slack.com/admin'`) and executed on xx/xx/xxxx.
+// This function had the intended effect when pasted/executed in the browser console on Slacks's "Manage members" page (`https://computer-lab.slack.com/admin'`)  on 12/xx/2018.
 
 deactivateAllMembersButAdmins = async (dryRun = true) => {
   const { bootData: { api_token }, adminMembers: { members }} = TS.redux.getState()
