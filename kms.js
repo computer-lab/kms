@@ -1,8 +1,15 @@
-// kms (kill my slack)
-//
-// This function had the intended effect when pasted/executed in Chrome's browser
-// console on Slack's "Manage members" page
-// (https://computer-lab.slack.com/admin)  on 12/22/2018.
+/*
+kms (kill my slack)
+This function had the intended effect when pasted/executed in Chrome's browser
+console on Slack's "Manage members" page
+(https://computer-lab.slack.com/admin)  on 12/22/2018.
+
+I’ve found that deactivating all non admin users in a workspace (effectively “deactivating the slack”) 
+during the holidays is a good way to give everyone a break, especially in noisy public slacks. 
+Unfortunately, slack does not provide a “deactivate user” endpoint in their API (at least for free slacks), 
+and manually deactivating all the users is a pain, so I had to go the “paste in browser console” route.
+I might add some sort of reactivation function ... after the holidays.
+*/
 
 deactivateAllMembersButAdmins = async (dryRun = true) => {
   const { bootData: { api_token }, adminMembers: { members }} = TS.redux.getState()
